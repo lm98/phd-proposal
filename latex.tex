@@ -10,7 +10,7 @@
 	\usepackage[colorlinks, filecolor=dark_blue, urlcolor=dark_blue, linkcolor=black, citecolor=black]{hyperref}
 \begin{document}
 
-\title{PhD Proposal Title}
+\title{Towards a democratized landscape for the development of Collective Adaptive Systems}
 \author{Leonardo Micelli}
 \date{\today}
 \maketitle
@@ -31,12 +31,54 @@
 % ----------------------------------------
 \newpage
 \section{Context and Motivation}
-max. 1000 characters \cite{dummy2023}
+(max. 1000 characters)
+
+In the rising context of ubiquitous computing \cite{weiser1991computer},
+Collective Adaptive Systems (CAS) have emerged as a fundamental paradigm to
+address the challenges of developing large-scale, dynamic and complex distributed
+systems where multiple, heterogeneous and often resource-constrained entities
+interact and coordinate to achieve a global behavior.
+
+Aggregate Computing (AC) is a programming paradigm, originated from Field Calculus \cite{viroli2013calculus},
+that aims to provide a unified framework for developing CAS by abstracting away the complexities
+of distributed systems and instead focusing on the collective behavior of the system.
+
+Many state-of-the-art implementations of AC have been proposed, each of them exploiting different platforms
+and technologies. While each of these offers unique sets of advantages, there is also a lack of a unified, interoperable 
+and democratized approach to AC where entities with different capabilities and resources can seamlessly interact and collaborate.
 
 % ----------------------------------------
 \newpage
 \section{State of the Art}
-max. 2500 characters
+(max. 2500 characters)
+
+\textbf{Collective Adaptive Systems} Collective Adaptive Systems are composed of multiple autonomous, interacting entities that operate in open-ended environments. 
+They are capable of self-organization, self-adaptation, and emergent coordination—properties crucial for systems that must continue to function under continuous change and uncertainty.
+In CAS, global behavior arises not from centralized planning but from local interactions among components, much like natural collectives such as ant colonies or bird flocks.
+
+\textbf{Macroprogramming}\cite{10.1145/3579353} is a paradigm that expresses the macroscopic behavior of a collective system using a single program, with the aim of
+capturing the global behavior of the system while abstracting away the complexities of individual components.
+
+\textbf{Aggregate Computing and Field Calculus}. AC\cite{beal2016aggregate} is a programming approach that aims to ease the engineering of CAS by shifting the
+focus from the individual device perspective to large aggregations of devices. It does so by exploiting the concepts of computational fields and FC.
+Within the FC, a computational field is a function mapping every computational device in a network, represented by a dynamic and reflexive neighboring
+relationship between devices, to a computational object. The main goal is to express the aggregate system behavior
+through a functional composition of fundamental operators that manipulate (evolve, combine, restrict)
+computational fields. A key concept of Field Calculus is that these aggregate-level specifications can
+also be interpreted as a local set of rules that define the iterative asynchronous
+execution of computation rounds.
+
+\textbf{Scafi}\cite{casadei2016towards} is one of the most actively researched and maintained implementations of
+AC. It is hosted in the Scala language, a powerful and expressive JVM-based
+language. The main advantage of Scafi is its ability to provide a
+more high-level platform to support agile prototyping for research.
+
+\textbf{Collektive} is a Kotlin-based implementation of AC that provides an extension of FC via the eXchange Calculus (XC) \cite{audrito2024exchange}.
+It provides an expressive DSL and it is natively multi-platform, enabling AC on a wider range of targets.
+
+\textbf{FCCP}\cite{audrito2024fcpp} is a C++ library that implements FC. It has been designed and developed to bring the AC paradigm to
+resource-constrained devices that cannot support the JVM. It does so by providing an extensible C++ library and a performance-oriented simulator that allows
+the developer to speed up the development process of aggregate programs.
 
 % ----------------------------------------
 \newpage
