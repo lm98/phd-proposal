@@ -21,69 +21,75 @@
 % ----------------------------------------
 \newpage
 \setcounter{tocdepth}{2}
-\tableofcontents
 
 % set these after the TOC
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 
-
-% ----------------------------------------
-\newpage
-\section{Context and Motivation}
-(max. 1000 characters)
-
-In the rising context of ubiquitous computing \cite{weiser1991computer},
-Collective Adaptive Systems (CAS) have emerged as a fundamental paradigm to
-address the challenges of developing large-scale, dynamic and complex distributed
-systems where multiple, heterogeneous and often resource-constrained entities
-interact and coordinate to achieve a global behavior.
-
-Aggregate Computing (AC) is a programming paradigm, originated from Field Calculus \cite{viroli2013calculus},
-that aims to provide a unified framework for developing CAS by abstracting away the complexities
-of distributed systems and instead focusing on the collective behavior of the system.
-
-Many state-of-the-art implementations of AC have been proposed, each of them exploiting different platforms
-and technologies. While each of these offers unique sets of advantages, there is also a lack of a unified, interoperable 
-and democratized approach to AC where entities with different capabilities and resources can seamlessly interact and collaborate.
-
 % ----------------------------------------
 \newpage
 \section{State of the Art}
-(max. 2500 characters)
-
-\textbf{Collective Adaptive Systems} Collective Adaptive Systems are composed of multiple autonomous, interacting entities that operate in open-ended environments. 
+\paragraph{\textbf{Collective Adaptive Systems}} Collective Adaptive Systems are composed of multiple autonomous, interacting entities that operate in open-ended environments. 
 They are capable of self-organization, self-adaptation, and emergent coordination—properties crucial for systems that must continue to function under continuous change and uncertainty.
 In CAS, global behavior arises not from centralized planning but from local interactions among components, much like natural collectives such as ant colonies or bird flocks.
 
-\textbf{Macroprogramming}\cite{10.1145/3579353} is a paradigm that expresses the macroscopic behavior of a collective system using a single program, with the aim of
+\paragraph{\textbf{Macroprogramming}} Macroprogramming\cite{10.1145/3579353} is a paradigm that expresses the macroscopic behavior of a collective system using a single program, with the aim of
 capturing the global behavior of the system while abstracting away the complexities of individual components.
 
-\textbf{Aggregate Computing and Field Calculus}. AC\cite{beal2016aggregate} is a programming approach that aims to ease the engineering of CAS by shifting the
+\paragraph{\textbf{Aggregate Computing and Field Calculus}} AC\cite{beal2016aggregate} is a macroprogramming approach that aims to ease the engineering of CAS by shifting the
 focus from the individual device perspective to large aggregations of devices. It does so by exploiting the concepts of computational fields and FC.
 Within the FC, a computational field is a function mapping every computational device in a network, represented by a dynamic and reflexive neighboring
 relationship between devices, to a computational object. The main goal is to express the aggregate system behavior
 through a functional composition of fundamental operators that manipulate (evolve, combine, restrict)
 computational fields. A key concept of Field Calculus is that these aggregate-level specifications can
-also be interpreted as a local set of rules that define the iterative asynchronous
-execution of computation rounds.
+also be interpreted as a local set of rules that define the iterative asynchronous execution of computation rounds.
 
-\textbf{Scafi}\cite{casadei2016towards} is one of the most actively researched and maintained implementations of
-AC. It is hosted in the Scala language, a powerful and expressive JVM-based
-language. The main advantage of Scafi is its ability to provide a
-more high-level platform to support agile prototyping for research.
+TODO: si potrebbe riformulare spiegando più nel dettaglio event structures e i self-stabilizing operators???
 
-\textbf{Collektive} is a Kotlin-based implementation of AC that provides an extension of FC via the eXchange Calculus (XC) \cite{audrito2024exchange}.
+\paragraph{\textbf{Aggregate Computing Incarnations}} Research on AC has led to the development of several incarnations, each of them tackling various research challenges of AC.
+\textit{Scafi}\cite{casadei2016towards} is one of the most actively researched and maintained implementations of
+AC. It is hosted in the Scala language, a powerful and expressive JVM-based language. The main advantage of Scafi is its ability to provide a
+more high-level platform to support agile prototyping for research. \textit{Collektive} is a Kotlin-based implementation of AC that provides an extension of FC via the eXchange Calculus (XC) \cite{audrito2024exchange}.
 It provides an expressive DSL and it is natively multi-platform, enabling AC on a wider range of targets.
-
-\textbf{FCCP}\cite{audrito2024fcpp} is a C++ library that implements FC. It has been designed and developed to bring the AC paradigm to
+\textit{FCCP}\cite{audrito2024fcpp} is a C++ library that implements FC. It has been designed and developed to bring the AC paradigm to
 resource-constrained devices that cannot support the JVM. It does so by providing an extensible C++ library and a performance-oriented simulator that allows
 the developer to speed up the development process of aggregate programs.
 
+\paragraph{\textbf{Swarm Robotics}} Swarm robotics is an approach to collective robotics that draws inspiration from the self-organized behavior of social animals \cite{brambilla2013swarm}. The goal is to design robust, flexible and scalable 
+collective behaviors for large number of robots through simple rules and local interactions. There are two main methods for designing such systems: \textit{automatic design}, which employs methods derived from
+evolutionary robotics and multi-robot reinforcement learning, and \textit{behavior-based design}, which involves the design and implementation of algorithms that can be executed by the robots. This design approach is often realized
+in a bottom-up fashion, starting from the individual behavior of the robots. Conversely, the top-down approach is based on the idea of expressing the desired behavior of the swarm by expressing a set of instruction at the collective level.
+Another important distinction is between \textit{centralized} and \textit{decentralized} approaches. Centralized approaches rely on a central entity that coordinates the behavior of the swarm, while decentralized approaches rely on local interactions between the robots to achieve the desired behavior.
+Decentralized approaches, in particular, offer several interesting properties such as robustness, fault tolerance and scalability, while centralized approaches are often more efficient and easier to implement.
+The field of swarm robotics has found several applications in various domains, such as \textit{(i)} foraging, \textit{(ii)} surveillance, \textit{(iii)} exploration, \textit{(iv)} transportation and logistics.
+
+\paragraph{\textbf{MacroSwarm}} The analysis from Brambilla\cite{brambilla2013swarm} highlighted a gap in research on top-down design methods of collective behaviors and a problem of
+formal verification and validation, heterogeneity and operational/maintenance issues.  
+MacroSwarm\cite{aguzzi2023macroswarm} is a computational field-based coordination approach with the goal of enabling the design and development of swarm robotic systems by
+providing reusable and fully composable functional components embedding collective computation and coordination, based on the macroprogramming paradigm of AC.
+The main idea of MacroSwarm is to express each swarm behavior block as a pure function mapping sensing fields to actuation fields, including movement vectors.
+The main API of MacroSwarm provides functional blocks covering key swarming patterns, such as \textit{(i)} flocking, \textit{(ii)} pattern formation, \textit{(iii)} consensus and \textit{(iv)} leader-follower behaviors, 
+all of which backed by the formal framework of AC, for which self-stabilisation properties are guaranteed. This allows MacroSwarm operators to enjoy formally captured resiliency properties.
+It does so by leveraging self-stabilizing FC operators such as \textit{(i) Sparse choice} (leader election), \textit{(ii) Gradient-cast} (distributed propagation) and \textit{(iii) Collect-cast} (distributed collection). 
+
+\subsection{Coherence with my previous academic experience}
+This proposed research projects extends and builds upon my previous academic experience, in particular in my last year of Master's degree.
+I have been introduced to AC and Scafi during the course of "Pervasive computing". Here, in the context of the final examination project for the course,
+I worked alongside three colleagues of mine to develop a Rust-based imlpementation of Aggregate Computing and a Scala 3 port of the Scafi DSL.
+I then built upon this project to develop my Master's thesis where I proposed a Rust-based distributed framework to execute distributed AC programs in a network of
+heterogeneous devices.
+
 % ----------------------------------------
 \newpage
-\section{Project Proposal}
-max 7500 characters
+\section{Description of the Project}
+
+
+\subsection{Motivation}
+While current state of the art implementations of AC provide various advantages, depending on the platform they are built upon, 
+
+Many state-of-the-art implementations of AC have been proposed, each of them exploiting different platforms
+and technologies. While each of these offers unique sets of advantages, there is also a lack of a unified, interoperable 
+and democratized approach to AC where entities with different capabilities and resources can seamlessly interact and collaborate.
 
 % ----------------------------------------
 \newpage
@@ -92,12 +98,12 @@ max. 3500 characters
 
 % ----------------------------------------
 \newpage
-\section{Timeline}
+\section{Lead-time for implementation}
 max. 2000 characters
 
 % ----------------------------------------
 \newpage
-\section{Verification Criteria}
+\section{Proposed criteria to be used to assess the findings obtained}
 max. 3500 characters
 
 \clearpage
