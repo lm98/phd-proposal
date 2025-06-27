@@ -6,6 +6,7 @@
 	\usepackage{mathrsfs}  % mathscr font
 	\usepackage{boxedminipage}
 	\usepackage{rotating}
+	\usepackage{svg}
 	%\usepackage{natbib}
 	\usepackage[colorlinks, filecolor=dark_blue, urlcolor=dark_blue, linkcolor=black, citecolor=black]{hyperref}
 \begin{document}
@@ -27,7 +28,6 @@
 \setlength{\parskip}{1em}
 
 % ----------------------------------------
-\newpage
 \section{State of the Art}
 \paragraph{\textbf{Collective Adaptive Systems}} Collective Adaptive Systems are composed of multiple autonomous, interacting entities that operate in open-ended environments. 
 They are capable of self-organization, self-adaptation, and emergent coordination—properties crucial for systems that must continue to function under continuous change and uncertainty.
@@ -81,29 +81,53 @@ I then built upon this project to develop my Master's thesis where I proposed a 
 heterogeneous devices, with the main goal of democratizing AC by offering a high-level API that can be supported in resource-constrained devices.
 
 % ----------------------------------------
-\newpage
 \section{Description of the Project}
 \subsection{Motivation}
-MacroSwarm has been introduced as a novel approach to swarm robotics, leveraging the principles of Aggregate Computing to offer a top-down, macroprogramming-based framework 
-which exposes an high-level, Scala-based functional API for the design and development of collective behaviors.
-The framework has been tested and validated by effectively running Alchemist\cite{pianini2013chemical} simulations.
-However, the current toolchain is predominantly JVM-based, which exhibits limitations in terms of deployment in resource-constrained environments. There is also the need
-to further expand upon dynamic team and collective resource management.
+The coordination of distributed agents in dynamic and uncertain environments is a longstanding challenge in the design of collective adaptive systems. 
+Recent advances in Aggregate Computing (AC) have provided powerful abstractions for expressing global behaviour through local interactions.
+In particular, state-of-the-art swarm robotics approaches, such as MacroSwarm can leverage self-stabilisation properties of AC operators to enable
+the design of robust and resilient collective behaviors, showing promise on a AC-based approach to swarm robotics.
+However, important gaps remain in terms of dynamic team formation, dynamic collective resource management and adaptive workflow management and planning.
+Furthermore, reliance on predominantly JVM-based architectures shows limitations in terms of democratization of the proposed approaches, as they are not easily deployable on resource-constrained devices.
 
 \subsection{Idea}
+The idea of the project, exemplified in Figure~\ref{fig:research-project}, is to build upon and extend the theoretical and practical foundations of Aggregate Computing to address scenarios where team composition, 
+task allocation, and resource availability evolve at runtime. In such contexts, ranging from swarms of heterogeneous robots to decentralized sensor-actuator 
+systems, collectives must continuously reconfigure in response to failures, environmental changes, or shifting goals.
+
+In particular, the research idea is to explore new computational constructs and coordination mechanisms that:
+\textit{(i)} enable dynamic team formation among distributed agents based on context and capability, 
+\textit{(ii)} support resilient task execution and workflow adaptation under partial knowledge and failures and
+\textit{(iii)} integrate resource-awareness and management into aggregate programs, allowing systems to self-optimize across heterogeneous hardware and network conditions.
+
+These directions aim to bridge the gap between the high-level expressiveness of aggregate programming and the operational realities of constrained, distributed environments. 
+By enriching the AC paradigm with notions of runtime adaptation, team-level abstractions, and workflow semantics, this work intends to push the boundaries of what is currently 
+achievable in terms of autonomy and coordination in collective systems.
+
+To support this vision, a secondary—but relevant—objective is to further investigate a lightweight and accessible AC platform that enables the deployment of these advanced coordination strategies 
+on resource-constrained devices. A native implementation, potentially based on Rust, could make aggregate models usable in domains currently underserved by JVM-based solutions, 
+facilitating real-world validation and promoting wider adoption.
+
+Ultimately, this project aims to make a conceptual and methodological contribution to the field of collective adaptive systems, by redefining how dynamic workflows, resilience, and resource-awareness 
+can be expressed and executed within the aggregate computing paradigm in the swarm robotics context.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/ResearchProject.png}
+	\caption{Overview of the research project}
+	 \label{fig:research-project}
+\end{figure}
+
 
 \subsection{Reference Scenarios}
 
 % ----------------------------------------
-\newpage
 \section{Expected Results}
 
 % ----------------------------------------
-\newpage
 \section{Lead-time for implementation}
 
 % ----------------------------------------
-\newpage
 \section{Proposed criteria to be used to assess the findings obtained}
 
 \clearpage
