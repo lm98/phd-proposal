@@ -68,43 +68,43 @@ formal verification and validation, heterogeneity and operational/maintenance is
 MacroSwarm\cite{aguzzi2023macroswarm} is a computational field-based coordination approach with the goal of enabling the design and development of swarm robotic systems by
 providing reusable and fully composable functional components embedding collective computation and coordination, based on the macroprogramming paradigm of AC.
 The main idea of MacroSwarm is to express each swarm behavior block as a pure function mapping sensing fields to actuation fields, including movement vectors.
-The main API of MacroSwarm provides functional blocks covering key swarming patterns, such as \textit{(i)} flocking, \textit{(ii)} pattern formation, \textit{(iii)} consensus and \textit{(iv)} leader-follower behaviors, 
+The main API of MacroSwarm consists of an extension of the Scafi DSL that provides functional blocks covering key swarming patterns, such as \textit{(i)} flocking, \textit{(ii)} pattern formation, \textit{(iii)} consensus and \textit{(iv)} leader-follower behaviors, 
 all of which backed by the formal framework of AC, for which self-stabilisation properties are guaranteed. This allows MacroSwarm operators to enjoy formally captured resiliency properties.
-It does so by leveraging self-stabilizing FC operators such as \textit{(i) Sparse choice} (leader election), \textit{(ii) Gradient-cast} (distributed propagation) and \textit{(iii) Collect-cast} (distributed collection). 
+It does so by leveraging self-stabilizing FC operators such as \textit{(i) Sparse choice} (leader election), \textit{(ii) Gradient-cast} (distributed propagation) and \textit{(iii) Collect-cast} (distributed collection).
+ 
 
 \subsection{Coherence with my previous academic experience}
 This proposed research projects extends and builds upon my previous academic experience, in particular in my last year of Master's degree.
 I have been introduced to AC and Scafi during the course of "Pervasive computing". Here, in the context of the final examination project for the course,
 I worked alongside three colleagues of mine to develop a Rust-based imlpementation of Aggregate Computing and a Scala 3 port of the Scafi DSL.
 I then built upon this project to develop my Master's thesis where I proposed a Rust-based distributed framework to execute distributed AC programs in a network of
-heterogeneous devices.
+heterogeneous devices, with the main goal of democratizing AC by offering a high-level API that can be supported in resource-constrained devices.
 
 % ----------------------------------------
 \newpage
 \section{Description of the Project}
-
-
 \subsection{Motivation}
-While current state of the art implementations of AC provide various advantages, depending on the platform they are built upon, 
+MacroSwarm has been introduced as a novel approach to swarm robotics, leveraging the principles of Aggregate Computing to offer a top-down, macroprogramming-based framework 
+which exposes an high-level, Scala-based functional API for the design and development of collective behaviors.
+The framework has been tested and validated by effectively running Alchemist\cite{pianini2013chemical} simulations.
+However, the current toolchain is predominantly JVM-based, which exhibits limitations in terms of deployment in resource-constrained environments. There is also the need
+to further expand upon dynamic team and collective resource management.
 
-Many state-of-the-art implementations of AC have been proposed, each of them exploiting different platforms
-and technologies. While each of these offers unique sets of advantages, there is also a lack of a unified, interoperable 
-and democratized approach to AC where entities with different capabilities and resources can seamlessly interact and collaborate.
+\subsection{Idea}
+
+\subsection{Reference Scenarios}
 
 % ----------------------------------------
 \newpage
 \section{Expected Results}
-max. 3500 characters
 
 % ----------------------------------------
 \newpage
 \section{Lead-time for implementation}
-max. 2000 characters
 
 % ----------------------------------------
 \newpage
 \section{Proposed criteria to be used to assess the findings obtained}
-max. 3500 characters
 
 \clearpage
 
