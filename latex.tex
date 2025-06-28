@@ -11,7 +11,7 @@
 	\usepackage[colorlinks, filecolor=dark_blue, urlcolor=dark_blue, linkcolor=black, citecolor=black]{hyperref}
 \begin{document}
 
-\title{Towards a democratized landscape for the development of Collective Adaptive Systems}
+\title{Towards democratization and resource awareness in dynamic swarm behaviors}
 \author{Leonardo Micelli}
 \date{\today}
 \maketitle
@@ -149,21 +149,40 @@ in the actual underlying network of robots can cause the inability of the entire
 framework is resilient to sudden topology change is crucial to provide stable behavior. 
 
 \subsubsection{Resource Management}
-%hardware? mission-related?
+Most robots in swarms are resource-constrained (small drones with limited battery, etc.). An open challenge is how to extend swarm operation time and range. 
+Some recent research focuses on energy-aware swarm algorithms e.g., task allocation that accounts for remaining battery, or formation flying that lets some drones draft off others to save power (much like geese in a V formation). 
+Swarms might employ rotation strategies, where robots take turns performing power-intensive tasks versus idle roles, to maximize overall mission duration.
+Possible decentralized approaches to the problem may be market-based solutions, where tasks may be auctioned and costed based on local condition.
 
 \subsubsection{Swarm Formation}
+Team formation patterns are one of the key challenges of engineering swarm behaviors. 
+Teams can be formed from the swarm following a particular logic, sensor reading or spatial structure. Usually teams 
+are associated to a leader (introducing the challenge of \textit{leader election}) which can function as an area of influence in the
+local decision of the neighboring nodes. Recent research show the need of advancements in the following categories:
+\textit{(i) decentralization}: the formation behavior needs to emerge from local interaction between robots in the swarm, rather than from a centralized entity. 
+\textit{(ii) resilience}, meaning the ability of the swarm to maintain formation/decision
+in the presence of adversarial events, in particular \textit{message loss, perception position errors} and \textit{node failures}.
+\textit{(iii) self-healing}, i.e. the ability of the formation to reconstruct itself and return to a stable structure if disturbances in the structure happen. Recent progress has been made
+regarding self-healing structures, in particular MacroSwarm offers a set of structures that have been proven as self-healing. However, deeper research in the topic is needed to generalize self-healing
+to all possible swarm formation structures.
 
 \subsubsection{Planning}
-%task management, how it changes over time in long missions
+Planning in swarm robotics is the distributed process by which the collective dynamically coordinates their actions to achieve complex, adaptive objectives.
+In top-down, macro level approaches, it is possible to devise an algorithm expressing the collective goal of the swarm by combining swarm behaviors with goals represented by boolean conditions.
+While this approach shows a step in the right direction, swarms may be deployed in highly mutable environments, where plan adaptivity and dynamic resource allocation based on environmental conditions
+are crucial to allow the swarm to reach its final goal. Nodes may distribute themselves across different independent tasks based on local status and condition, or may adapt their current global behavior
+based on available resources in order to prevent wear-off or save energy.
+This highlights the need for a mechanism to express resource, condition aware plans and dynamic workflows.
 
 \subsubsection{Democratization of Aggregate Computing}
 %caratteristiche di democratic AC. Rustfields?
 In the context of the proposed project, a \textit{democratic} incarnation of Aggregate Computing \textit{(i)} provides an expressive, general purpose and
-composable API that enables the design, development and maintenance of complex CAS (user-centric view), \textit{(ii)} enables the deployment
-in the largest portions of systems, even highly resource-constrained ones (device-centric view). Current AC incarnations offer different properties
+composable API that enables the design, development and maintenance of complex CAS (user-oriented democratization), \textit{(ii)} enables the deployment
+in the largest portions of systems, even highly resource-constrained ones (device-oriented democratization). Current AC incarnations offer different properties
 regarding this matter, in particular Scafi is highly expressive but with limited device coverage, while FCPP can be deployed in limited resources environments
 at the cost of ergonomics. Alongside this spectrum, there are incarnations that have the capability to cover more devices while maintaining expressiveness, such as the Kotlin-based
-Collektive framework and other solutions are being explored with Rust-based incarnations as mentioned in Section~\ref{sec:coherence}.
+Collektive framework and other solutions are being explored with Rust-based incarnations as mentioned in Section~\ref{sec:coherence}. It will be crucial to the project
+to ensure that the AC platform exploited by the framework provides the aforementioned properties.
 
 \subsection{Reference Scenarios}
 \label{sec:scenarios}
@@ -181,9 +200,44 @@ The future vision for the project is to enable the building of complex, resilien
 
 % ----------------------------------------
 \section{Lead-time for implementation}
+\begin{figure}
+	\includegraphics[width=\linewidth]{figures/timeline.png}
+	\caption{Hypothetical three year timeline for the project.}
+	\label{fig:timeline}
+\end{figure}
+
+The Figure~\ref{fig:timeline} shows the hypothetical three-year timeline for the project, subdivided into quarters.
+
+\paragraph{First year.} In the first year will be crucial a deep dive into the research of the state of the art in aggregate computing platforms to devise the design of the Aggregate Computing Platform.
+In parallel, deep research of current FC operators and their properties will lay the foundation of the basic composable building blocks for swarm behavior, such as flocking, pattern formation, consensus and leader election.
+Due to the overlap of these two tasks, it is expected for the latter to carry over the first half of the second year, to allow enough time for the AC platform to be completed by the end of the first year.
+
+\paragraph{Second year.} Within the second year, it is expected to shift focus from the basic building blocks of swarm behavior to the extended library, that will tackle some of the most relevant challenges expressed in Section~\ref{sec:challenges}.
+There will also be an increase in prototyping activities, which will first start in a simulated environment.
+Towards the end of the year, it is expected to start leverage swarm behaviors to tackle a reference scenario in the real-world.
+
+\paragraph{Third year.} In the third and final year, the focus will predominantly be to finalize the library of resilient swarm behaviors, while also converging to the end of the real-world testbed in the referenced scenario.
 
 % ----------------------------------------
 \section{Proposed criteria to be used to assess the findings obtained}
+
+\paragraph{Qualitative.}
+The project will be assessed qualitatively by examining the expressiveness, usability, and resilience of the proposed framework in real-world and simulated deployments.  
+Key questions include:  
+(i) Expressiveness \& composability: possibility to describe a broad spectrum of swarm behaviours concisely. 
+(ii) Robustness \& adaptability in the field: how the swarm copes with adversarial events and whether it self‑stabilises to the intended global behaviour.  
+(iii) “Democratisation:” Success is achieved if the same aggregate program can run unmodified on heterogeneous hardware classes that include low resource devices.
+
+
+\paragraph{Quantitative.}
+Experiments need to be rigorously conducted and documented from the beginning of the simulated prototype phase until the end of the reference scenario implementation in the real world.
+Detailed quantitative metrics for success need to be expressed while documenting such experiments. 
+The metrics gathered will be compared with state-of-the-art swarm robotics frameworks to evaluate performance relative to optimal solutions.
+As field-testing requires specialized hardware, efforts will be made to secure partnerships for international research stays during the PhD program, facilitating access to necessary equipment for project testing.
+
+\paragraph{Scientific Contributions.}
+During the course of the program, it is expected to contribute to the scientific knowledge of CAS engineering and swarm robotics. 
+In particular, it is expected to submit papers annually to conferences that are relevant to the field of CAS (such as ACSOS \footnote{\url{https://acsos.github.io/}}) and robotics (such as ICRA \footnote{\url{https://2025.ieee-icra.org/}}).
 
 \clearpage
 
