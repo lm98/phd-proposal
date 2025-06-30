@@ -117,13 +117,9 @@ Finally, Scafi's dependency on the JVM united with the variegated scenario regar
 of collective behaviors in heterogeneous and possibly resource-constrained systems.
 
 \subsection{Idea}
-% Oiù che parlare di democratizzazione parlare di lingua franca e spostare nelle motivazioni
-
-descrivere in modo chiaro le proprietà che vogliamo in questi sistemi
-
 The idea of the project, exemplified in Figure~\ref{fig:research-project}, is to provide a top-down, unified approach to swarm behavior design, by offering a
 set of resilient, functional and composable blocks that will form a general purpose API for swarm robotics. These blocks will guarantee decentralization, self-adaptiveness and resiliency.
-Given Aggregate Programs' proven~\cite{viroli2018engineering} resiliency, self-adaptability and self-stabilization properties, an AC platform will serve as the
+Given Aggregate Programs' proven resiliency, self-adaptability and self-stabilization properties~\cite{viroli2018engineering}, an AC platform will serve as the
 foundation upon which functional blocks for \textit{(i)} consensus, \textit{(ii)} leader election, \textit{(iii)} pattern formation,
 \textit{(iv)} team organization and \textit{(v)} collective planning will be built. This can be done thanks to the possibility of leveraging FC's resilient operators of sparse choice, 
 gradient-cast and collect-cast alongside other core FC operators. Moreover, the proposed AC platform will take into account the need for interoperability between devices with different 
@@ -138,87 +134,63 @@ computational capabilities to ensure the possibility of real-world deployment.
 
 \subsection{Research Goals and Challenges}
 \label{sec:challenges}
-todo: definire meglio cosa si intende il soggetto della challenge e fare qualche citazione per giustificare il fatto che le research challenge sono interessanti
 
 \subsubsection{Team Management}
-CAS are naturally dynamic and continually evolving. One implication of these properties is that entities within a CAS can fail, join and leave over the course of time.
-Within a collective computation and AC, the sudden change in the neighborhood of the composing entities can yield to different outputs, and this effect may propagate upwards and
-affect the collective result of the computation. In AC-based swarm robotic contexts, where swarm behaviors are mappings between sensing fields to actuation fields, sudden changes
-in the actual underlying network of robots can cause the inability of the entire system to reach the desired collective goal. Ensuring that the swarm behavior expressed through the
-framework is resilient to sudden topology change is crucial to provide stable behavior. 
+Team management refers to the logical subdivision of the swarm resources--e.g., the robots, in order to better tackle a task or collective goal.
+Teams may be adaptively derived from local context and could dynamically change based on external, environmental factors or internal factors such as node failure, in spite of
+which the collective team configuration should be resilient and self-stabilize in order to converge to the desired goal.
+
+Approaches to team-based collaboration in swarm robotics found in literature vary from evolutionary methods~\cite{ferrante2015evolution} and iterative approaches where complementary
+sub-tasks are given to different classes of robots to collaboratively converge to an optimal solution~\cite{ducatelle2010cooperative}. However, there is still a lack of top-down, macro-level
+approaches to optimal team management. 
 
 \subsubsection{Swarm Formation}
-spiegare che il team è una suddivisione prettamente logica (magari goal oriented).
-All'interno del team lo swarm può strutturarsi in una organizzazione topologica (formation)
-
-Team formation patterns are one of the key challenges of engineering swarm behaviors. 
-Teams can be formed from the swarm following a particular logic, sensor reading or spatial structure. Usually teams 
-are associated to a leader (introducing the challenge of \textit{leader election}) which can function as an area of influence in the
-local decision of the neighboring nodes. Recent research show the need of advancements in the following categories:
-\textit{(i) decentralization}: the formation behavior needs to emerge from local interaction between robots in the swarm, rather than from a centralized entity. 
-\textit{(ii) resilience}, meaning the ability of the swarm to maintain formation/decision
-in the presence of adversarial events, in particular \textit{message loss, perception position errors} and \textit{node failures}.
-\textit{(iii) self-healing}, i.e. the ability of the formation to reconstruct itself and return to a stable structure if disturbances in the structure happen. Recent progress has been made
-regarding self-healing structures, in particular MacroSwarm offers a set of structures that have been proven as self-healing. However, deeper research in the topic is needed to generalize self-healing
-to all possible swarm formation structures. dire che mancano garanzie forti su tempi di convergenza e risposta ai rumori
+While teams are a more logic partition of the swarm resources, swarm formation behaviors are a collection of patterns with the aim of adapting the 
+spatial, topological structure adopted by the collective. In general, a swarm can have one or more teams and within each team there is a formation.
+Recently researched methods for pattern formation in swarm robotics consist of decentralized approaches to flocking formations~\cite{ferrante2012self} and
+bio-inspired morphogenetic approaches~\cite{oh2017bio} and low-assumption, bearing-only formation tracking models~\cite{zhao2019bearing} (which lacks actual integration in pratical frameworks). 
+However, current implementations are highly case and hardware-specific, and there are currently no proposed methods for top-down collective behaviors that have any guarantee of
+timely convergence and resilience to sensor disturbance. 
 
 \subsubsection{Planning}
-cosa si intende con planning e workflow management? Fare esempi
-Si potrebbe citare Rise of the Swarm (eventualmente citabile anche nelle motivazioni)
-
 Planning in swarm robotics is the distributed process by which the collective dynamically coordinates their actions to achieve complex, adaptive objectives.
-In top-down, macro level approaches, it is possible to devise an algorithm expressing the collective goal of the swarm by combining swarm behaviors with goals represented by boolean conditions.
-While this approach shows a step in the right direction, swarms may be deployed in highly mutable environments, where plan adaptivity and dynamic resource allocation based on environmental conditions
-are crucial to allow the swarm to reach its final goal. Nodes may distribute themselves across different independent tasks based on local status and condition, or may adapt their current global behavior
-based on available resources in order to prevent wear-off or save energy.
-This highlights the need for a mechanism to express resource, condition aware plans and dynamic workflows.
+Given a collective goal, the act of collective planning refers to devising a workflow of tasks that can lead the swarm to achieve said goal, combining behavior, success conditions and task-oriented team management.
+Researched approaches found in literature propose a role-based partition of tasks~\cite{sampedro2016flexible}, where robots are given fixed roles within the context of a specific mission, highlighting the lack
+of decentralized approaches that let task partitioning and goal pursuing emerge from local interactions.
 
-\subsubsection{Democratization of Aggregate Computing}
-%caratteristiche di democratic AC. Rustfields?
-In the context of the proposed project, a \textit{democratic} incarnation of Aggregate Computing \textit{(i)} provides an expressive, general purpose and
-composable API that enables the design, development and maintenance of complex CAS (user-oriented democratization), \textit{(ii)} enables the deployment
-in the largest portions of systems, even highly resource-constrained ones (device-oriented democratization). Current AC incarnations offer different properties
-regarding this matter, in particular Scafi is highly expressive but with limited device coverage, while FCPP can be deployed in limited resources environments
-at the cost of ergonomics. Alongside this spectrum, there are incarnations that have the capability to cover more devices while maintaining expressiveness, such as the Kotlin-based
-Collektive framework and other solutions are being explored with Rust-based incarnations as mentioned in Section~\ref{sec:coherence}. It will be crucial to the project
-to ensure that the AC platform exploited by the framework provides the aforementioned properties.
 
 \subsection{Reference Scenarios}
 \label{sec:scenarios}
-% Motivare un po' per ogni scenario perché swarms e le motivazioni sono utili in questi scenarri
-% Fare qualche esempio su swarm robotics ma anche generali su cas come smart cities
 
-%\paragraph{Disaster Response} One of the most promising areas is disaster response and search \& rescue. Swarms of inexpensive robots can rapidly explore a disaster site, 
-%locating survivors or mapping damage much faster than a single robot or human team. 
-%Aerial drone swarms could coordinate to cover different sectors of a search area, communicate sightings of survivors, and collaboratively haul lightweight relief supplies. Their distributed nature means even if some drones crash or lose signal, the rest can complete the mission - a critical advantage in hazardous environments.
+\paragraph{Disaster Response.} One of the most promising areas is disaster response and search \& rescue. Swarms of inexpensive robots can rapidly explore a disaster site, 
+locating survivors or mapping damage much faster than a single robot or human team. 
+Aerial drone swarms could coordinate to cover different sectors of a search area, communicate sightings of survivors, and collaboratively haul lightweight relief supplies. 
+Their distributed nature means even if some drones crash or lose signal, the rest can complete the mission - a critical advantage in hazardous environments.
 
-\paragraph{Environmental Monitoring and Mapping}
-In this scenario, a swarm of small, ground-based or aerial robots could collaboratively explore, map, and monitor a defined natural environment, such as a forest, agricultural field, or coastal area. 
-Their primary objectives could include identifying environmental anomalies (e.g., detecting pollution, monitoring vegetation health), creating a detailed real-time map of the area, 
-and dynamically adapting their collective movement based on environmental cues or unexpected events.
+\paragraph{Crowd Management/Control.} 
+Instead of relying on fixed cameras or isolated sensors, a swarm of aerial and/or ground robots can self-distribute across an event site, ensuring full coverage even as crowds shift.
+Using local, sensing-based rules, each robot repels neighbors to avoid clustering and is attracted to lower-density zones, naturally spreading out to fill gaps in sensing coverage
+to dynamically track pedestrian densities in public squares, transit hubs, or during mass gatherings.
 
-\paragraph{Digital Twins of Swarms}
+\paragraph{Digital Twins of Swarms.}
 Swarm Digital Twins represent virtual replicas of physical swarm robotic systems, capturing their collective behaviors and interactions in real-time. 
 In this scenario, a digital twin of a robot swarm deployed for environmental monitoring continuously integrates real-time sensor data and operational states of each physical robot. 
 Leveraging this digital counterpart, operators can anticipate emergent behaviors, optimize swarm performance, and preemptively detect faults or potential disruptions before they manifest in the real system. 
 Furthermore, digital twins provide a safe platform for testing and validating new swarm algorithms and coordination strategies prior to physical deployment, significantly reducing experimentation costs and risks. 
-By merging% Spiegare meglio le proprietà interessanti di AC in ottica CAS
- real-time physical insights with advanced predictive analytics, swarm digital twins enable more efficient, reliable, and adaptable swarm robotic systems, bridging the gap between theoretical models and practical applications.
-
-%Aggiungere scenari CAS generali come crowd management??
+By merging real-time physical insights with advanced predictive analytics, swarm digital twins enable more efficient, reliable, and adaptable swarm robotic systems, bridging the gap between theoretical models and practical applications.
 % ----------------------------------------
 \section{Expected Results}
 As a form of result of the proposed project, it is expected to bring \textit{(i)} scientific contributions to CAS engineering, in particular in swarm robotics and collective behavior through AC,
-\textit{(iii)} to realize an actionable top-down design framework based on AC to address the open challenges in Section~\ref{sec:challenges}, \textit{(iii)} a real-world validation possibly based on the reference scenarios in Section~\ref{sec:scenarios}.
+\textit{(iii)} to realize an actionable top-down design framework based on AC to address the open challenges in Section~\ref{sec:challenges}, 
+\textit{(iii)} validations based on reference scenarios conducted within state of art simulators such as Argos~\footnote{\url{https://www.argos-sim.info/}} and Alchemist~\footnote{\url{https://github.com/AlchemistSimulator/Alchemist}} as well
+as in the real-world.
 
 The future vision for the project is to enable the building of complex, resilient and dynamic swarm behaviors and deploy them in real-world scenarios, some of which could be \textit{(i)} precision agriculture,
 \textit{(ii)} environmental monitoring, \textit{(iii)} logistics and warehousing, \textit{(iv)} disaster response and search, 
 \textit{(v)} ubiquitous computing with Swarm Digital Twins.
 
-menzionare anche il simulated environment
 % ----------------------------------------
 \section{Lead-time for implementation}
-%Simulazioni con argos alchemist ecc
 \begin{figure}
 	\includegraphics[width=\linewidth]{figures/timeline.png}
 	\caption{Hypothetical three year timeline for the project.}
@@ -230,10 +202,10 @@ The Figure~\ref{fig:timeline} shows the hypothetical three-year timeline for the
 \paragraph{First year.} In the first year will be crucial a deep dive into the research of the state of the art in aggregate computing platforms to devise the design of the Aggregate Computing Platform.
 In parallel, deep research of current FC operators and their properties will lay the foundation of the basic composable building blocks for swarm behavior, such as flocking, pattern formation, consensus and leader election.
 Due to the overlap of these two tasks, it is expected for the latter to carry over the first half of the second year, to allow enough time for the AC platform to be completed by the end of the first year.
+Extensive testing will be conducted firstly by simulating a reference scenario, with the final goal to implement it in the real-world
 
 \paragraph{Second year.} Within the second year, it is expected to shift focus from the basic building blocks of swarm behavior to the extended library, that will tackle some of the most relevant challenges expressed in Section~\ref{sec:challenges}.
 There will also be an increase in prototyping activities, which will first start in a simulated environment.
-Towards the end of the year, it is expected to start leverage swarm behaviors to tackle a reference scenario in the real-world.
 
 \paragraph{Third year.} In the third and final year, the focus will predominantly be to finalize the library of resilient swarm behaviors, while also converging to the end of the real-world testbed in the referenced scenario.
 
@@ -256,8 +228,9 @@ As field-testing requires specialized hardware, efforts will be made to secure p
 
 \paragraph{Scientific Contributions.}
 During the course of the program, it is expected to contribute to the scientific knowledge of CAS engineering and swarm robotics. 
-In particular, it is expected to submit papers annually to conferences that are relevant to the field of CAS (such as ACSOS \footnote{\url{https://acsos.github.io/}}) and robotics (such as ICRA \footnote{\url{https://2025.ieee-icra.org/}}).
-TAAS e SwarmIntelligence come journals 
+In particular, it is expected to submit papers annually to conferences that are relevant to the field of CAS (such as ACSOS \footnote{\url{https://acsos.github.io/}}) and robotics (such as ICRA \footnote{\url{https://2025.ieee-icra.org/}}),
+as well as journals such as TAAS~\footnote{\url{https://dl.acm.org/journal/taas}} and Swarm Intelligence~\footnote{\url{https://www.scimagojr.com/journalsearch.php?q=11700154734&tip=sid}}.
+Success will also be evaluated by establishing international collaborations with experts like Prof. Lukas Esterle and Prof. Alessandro Papadopoulos, who have prior collaboration experience with the research group I will work with.
 \clearpage
 
 %-----------------------------------------
