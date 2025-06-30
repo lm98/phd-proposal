@@ -101,27 +101,33 @@ heterogeneous devices, with the main goal of democratizing AC by offering a high
 % ----------------------------------------
 \section{Description of the Project}
 \subsection{Motivation}
-The analysis from Brambilla~\cite{brambilla2013swarm} highlighted a gap in research on top-down design methods of collective behaviors that let users express swarm behavior
-There has been a recent rise in research contribution on the matter, 
-particularly with the Scafi-based framework Macroswarm~\cite{aguzzi2023macroswarm}, which takes advantage of self-stabilising FC constructs and the expressiveness provided from the
-Scafi DSL to offer an API consisting of functional, composable building blocks of swarm behavior.
-However, important gaps remain in terms of dynamic team formation, dynamic collective resource management and adaptive workflow management and planning.
-Furthermore, reliance on predominantly JVM-based architectures shows limitations in terms of democratization of the proposed approaches, as they are not easily deployable on resource-constrained devices tipically
-found in real-world scenarios, confining recent developments to simulations.
+The analysis from Brambilla~\cite{brambilla2013swarm} highlighted a gap in research on top-down design methods of collective behaviors.
+In particular, there is a need for a unified framework that enables expressing at the macro/collective level swarm behaviors that have
+been of research interest such as:
+\textit{(i)} consensus~\cite{valentini2017achieving}, \textit{(ii)} leader election~\cite{karpov2015leader}, \textit{(iii)} pattern formation~\cite{sahin2002swarm},
+\textit{(iv)} team organization~\cite{nouyan2009teamwork} and \textit{(v)} collective planning~\cite{sampedro2016flexible}.
+
+In particular, there is a lack of a unified solution that can express, from a collective perspective, the aforementioned behaviors while granting decentralization, 
+resiliency, self-stabilization and guarantee of convergence, especially in low-resource and low-assumption contexts such as
+bearing-only formations~\cite{zhao2021bearing}, where data about orientation is gathered from simple sensors and used to form resilient swarm formations.
+
+Recent preliminary work in this direction has been conducted with MacroSwarm~\cite{aguzzi2023macroswarm}, a AC-powered ScaFi extension that exposes an API of collective
+behaviors built on top of AC's resilient operators. However, deeper research and further expansion is needed in areas such as dynamic team formation, resource management and adaptive workflow management and planning.
+Finally, Scafi's dependency on the JVM united with the variegated scenario regarding AC incarnations highlights the need of a \textit{lingua franca} that enables the definition and deployment
+of collective behaviors in heterogeneous and possibly resource-constrained systems.
 
 \subsection{Idea}
 % Oiù che parlare di democratizzazione parlare di lingua franca e spostare nelle motivazioni
 
 descrivere in modo chiaro le proprietà che vogliamo in questi sistemi
 
-The idea of the project, exemplified in Figure~\ref{fig:research-project}, is to provide a top-down, behavior-based and FC-powered approach to swarm robotics engineering, by offering a
-resilient, functional and composable general purpose API.
-At the base of the project lies a "democratic" Aggregate Computing incarnation. Here the goal is to provide a high-level DSL as in the most recent discussed AC incarnations,
-while preserving the ability to be deployed in resource-constrained environments. The platform will expose well-researched, self-stabilizing FC constructs such as
-\textit{(i) Sparse choice S} (leader election), \textit{(ii) Gradient-cast G} (distributed propagation) and \textit{(iii) Collect-cast C} (distributed collection) that will be used to form
-the base blocks for swarm behavior. The solution will also build upon and extend the theoretical and practical foundations of Aggregate Computing to address scenarios where team composition, 
-task allocation, and resource availability evolve at runtime. In such contexts, ranging from swarms of heterogeneous robots to decentralized sensor-actuator 
-systems, collectives must continuously reconfigure in response to failures, environmental changes, or shifting goals.
+The idea of the project, exemplified in Figure~\ref{fig:research-project}, is to provide a top-down, unified approach to swarm behavior design, by offering a
+set of resilient, functional and composable blocks that will form a general purpose API for swarm robotics. These blocks will guarantee decentralization, self-adaptiveness and resiliency.
+Given Aggregate Programs' proven~\cite{viroli2018engineering} resiliency, self-adaptability and self-stabilization properties, an AC platform will serve as the
+foundation upon which functional blocks for \textit{(i)} consensus, \textit{(ii)} leader election, \textit{(iii)} pattern formation,
+\textit{(iv)} team organization and \textit{(v)} collective planning will be built. This can be done thanks to the possibility of leveraging FC's resilient operators of sparse choice, 
+gradient-cast and collect-cast alongside other core FC operators. Moreover, the proposed AC platform will take into account the need for interoperability between devices with different 
+computational capabilities to ensure the possibility of real-world deployment.
 
 \begin{figure}
 	\centering
