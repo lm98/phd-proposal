@@ -171,7 +171,8 @@ of decentralized approaches that let task partitioning and goal pursuing emerge 
 
 \subsubsection{Language-based aggregate code generation}
 LLM-based code generation already showed promise in various areas of software engineering~\cite{hudson2024software,zhou2025large,he2025llm}. However, if we consider the domain of CAS and swarm robotics in particular, 
-a gap in proposed methods for language-based program synthesis still remain. Recent research~\cite{vemprala2024chatgpt} showed the potential of combining LLMs, prompt engineering and, notably, libraries of robot functionalities 
+a gap remains in language-based program synthesis methods, particularly when LLMs must generate code for specialized domains or languages not well-represented in their training data. This challenge is especially pronounced in niche areas like aggregate computing, where domain-specific constructs and paradigms may be unfamiliar to general-purpose models, potentially limiting the quality and correctness of generated code.
+Recent research~\cite{vemprala2024chatgpt} showed the potential of combining LLMs, prompt engineering and, notably, libraries of robot functionalities 
 to enact a language-based robot development process. This highlights the potential for developing similar solutions in AC contexts, as the paradigm is by design comprised of simple, functional and composable building blocks that could
 be combined by LLM agents to generate aggregate specifications based on constraints gathered with natural language processing.
 
