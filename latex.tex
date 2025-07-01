@@ -28,20 +28,12 @@
 
 % ----------------------------------------
 \section{State of the Art}
-\paragraph{\textbf{Collective Adaptive Systems and Macroprogramming}} Collective Adaptive Systems~\cite{ferscha2015collective} are large scale distributed systems composed of multiple autonomous, 
-interacting entities that operate in open-ended environments. While each entity within the CAS (i.e., sensor, robot, software agent) operates autonomously with its own local context and objective, their interactions
-produce \textbf{emergent global behaviors}. Decision-making in CAS is decentralized, and global functionality emerges from local interaction. Examples of CAS can be found in \textit{Smart Cities}, \textit{WSNs}, \textit{Digital Twins} and \textit{Swarm Robotics}.
-CAS are typically heterogeneous and highly dynamic: entities can fail, join and leave at any time, introducing key challenges ranging from scalability and resource constraints to resilience and adaptability in
-unpredictable environments. Novel approaches to the engineering of CAS propose to shift the focus from the individual entity to the collective as a whole \textit{(macroprogramming~\cite{10.1145/3579353})}, to manage increasing complexity while
-improving maintainability. The main idea is to capture the macroscopic behavior of a collective system through a single program, abstracting away the complexities of individual components.
+\paragraph{\textbf{Collective Adaptive Systems and Macroprogramming}} Collective Adaptive Systems~\cite{ferscha2015collective} are distributed systems composed of numerous autonomous entities—such as sensors, robots, or software agents—that interact within open-ended, often unpredictable environments. 
+Despite operating based on local knowledge and objectives, these entities collectively exhibit emergent global behaviors through decentralized coordination. CAS are inherently heterogeneous and dynamic, with components that may join, fail, or leave the system at any time, posing challenges related to scalability, 
+fault tolerance, and adaptability. To manage this complexity, macroprogramming~\cite{10.1145/3579353} abstracts system behavior at the collective level, enabling developers to specify global coordination logic through a single program. This paradigm decouples high-level behavior specification from low-level individual logic, promoting modularity, reusability, and more robust system engineering.
 
-\paragraph{\textbf{Swarm Robotics}} Swarm robotics is an approach to collective robotics that draws inspiration from the self-organized behavior of social animals ~\cite{brambilla2013swarm}. The goal is to design robust, flexible and scalable 
-collective behaviors for large number of robots through simple rules and local interactions. There are two main methods for designing such systems: \textit{automatic design}, which employs methods derived from
-evolutionary robotics and multi-robot reinforcement learning, and \textit{behavior-based design}, which involves the design and implementation of algorithms that can be executed by the robots. This design approach is often realized
-in a bottom-up fashion, starting from the individual behavior of the robots. Conversely, the top-down approach is based on the idea of expressing the desired behavior of the swarm by expressing a set of instruction at the collective level.
-Another important distinction is between \textit{centralized} and \textit{decentralized} approaches. Centralized approaches rely on a central entity that coordinates the behavior of the swarm, while decentralized approaches rely on local interactions between the robots to achieve the desired behavior.
-Decentralized approaches, in particular, offer several interesting properties such as robustness, fault tolerance and scalability, while centralized approaches are often more efficient and easier to implement.
-The field of swarm robotics has found several applications in various domains, such as \textit{(i)} foraging~\cite{talamali2020sophisticated}, \textit{(ii)} surveillance~\cite{saska2016swarm}, \textit{(iii)} exploration~\cite{huang2019exploration}, \textit{(iv)} transportation and logistics~\cite{zhang2015swarm}.
+\paragraph{\textbf{Swarm Robotics}} Swarm robotics is a subfield of collective robotics inspired by the self-organizing behaviors of social animals  ~\cite{brambilla2013swarm}. aiming to engineer scalable, robust, and flexible group behaviors in large robot collectives through local interactions and simple individual rules. Two main design methodologies exist: automatic design, leveraging techniques such as evolutionary robotics and multi-agent reinforcement learning; and behavior-based design, which focuses on explicitly programming local behaviors, often following a bottom-up approach. Alternatively, top-down approaches define the desired collective behavior at a global level, from which individual actions are derived. Another key distinction lies between centralized and decentralized control. Centralized systems benefit from easier coordination and potentially higher efficiency, while decentralized systems offer superior scalability, robustness, and fault tolerance through local, peer-to-peer interactions. Swarm robotics has demonstrated practical applications in domains including foraging
+~\cite{talamali2020sophisticated}, surveillance~\cite{saska2016swarm}, exploration~\cite{huang2019exploration}, transportation and logistics~\cite{zhang2015swarm}.
 
 % Spiegare meglio le proprietà interessanti di AC in ottica CAS
 % Spiegare qui le proprietà e i bloccchi self stabilizing con esempi.
@@ -78,14 +70,9 @@ These operators are compositional: complex behaviors emerge by combining them (e
 
 AC is being actively researched in many areas, such as reinforcement learning~\cite{aguzzi2022towards}, IoT~\cite{beal2015aggregate} and digital twins~\cite{casadei2021digital}.
 
-\paragraph{\textbf{Aggregate Computing Incarnations}} Research on AC has led to the development of several incarnations, each of them tackling various research challenges of AC.
-\textsc{ScaFi}~\cite{casadei2016towards} is one of the most actively researched and maintained implementations of
-AC. It is hosted in the Scala language, a powerful and expressive JVM-based language. The main advantage of ScaFi is its ability to provide a
-more high-level platform to support agile prototyping for research. \textit{Collektive} is a Kotlin-based implementation of AC that provides an extension of FC via the eXchange Calculus (XC) ~\cite{audrito2024exchange}.
-It provides an expressive DSL, and it is natively multi-platform, enabling AC on a wider range of targets.
-\textit{FCCP}~\cite{audrito2024fcpp} is a C++ library that implements FC. It has been designed and developed to bring the AC paradigm to
-resource-constrained devices that cannot support the JVM. It does so by providing an extensible C++ library and a performance-oriented simulator that allows
-the developer to speed up the development process of aggregate programs. 
+\paragraph{\textbf{Aggregate Computing Incarnations}} Research on Aggregate Computing (AC) has produced several implementations addressing different challenges.
+\textit{Scafi}~\cite{casadei2016towards} a well-maintained Scala-based platform, supports high-level, agile prototyping for research. \textit{Collektive} is a Kotlin implementation extending Field Calculus (FC) via the eXchange Calculus (XC) ~\cite{audrito2024exchange}.
+\textit{FCCP}~\cite{audrito2024fcpp} is a C++ library brings AC to resource-constrained devices by offering an extensible framework and a performance-focused simulator for faster development.
 
 \paragraph{LLM-aided code generation}
 \sloppypar
@@ -101,12 +88,7 @@ of a high-level function library to allow ChatGPT to adapt to different robotics
 
 \subsection{Coherence with my previous academic experience}
 \label{sec:coherence}
-This proposed research projects extends and builds upon my previous academic experience, in particular in my last year of Master's degree.
-I have been introduced to AC and ScaFi during the course of "Pervasive computing". Here, in the context of the final examination project for the course,
-I worked alongside three colleagues of mine to develop a Rust-based imlpementation of Aggregate Computing and a Scala 3 port of the ScaFi DSL.
-I then built upon this project to develop my Master's thesis where I proposed a Rust-based distributed framework to execute distributed AC programs in a network of
-heterogeneous devices, with the main goal of democratizing AC by offering a high-level API that can be supported in resource-constrained devices.
-
+This research builds on my academic background, particularly the final year of my Master’s degree. I was introduced to Aggregate Computing and ScaFi during the Pervasive Computing course, where I collaborated with three colleagues to develop a Rust-based AC implementation and a Scala 3 port of the ScaFi DSL. I later expanded this work into my Master’s thesis, proposing a Rust-based distributed framework for executing AC programs on heterogeneous networks, with the goal of democratizing AC through a high-level API suitable for resource-constrained devices.
 % ----------------------------------------
 \section{Description of the Project}
 \subsection{Motivation}
@@ -190,11 +172,9 @@ Using local, sensing-based rules, each robot repels neighbors to avoid clusterin
 to dynamically track pedestrian densities in public squares, transit hubs, or during mass gatherings.
 
 \paragraph{Digital Twins of Swarms.}
-Swarm Digital Twins represent virtual replicas of physical swarm robotic systems, capturing their collective behaviors and interactions in real-time. 
-In this scenario, a digital twin of a robot swarm deployed for environmental monitoring continuously integrates real-time sensor data and operational states of each physical robot. 
-Leveraging this digital counterpart, operators can anticipate emergent behaviors, optimize swarm performance, and preemptively detect faults or potential disruptions before they manifest in the real system. 
-Furthermore, digital twins provide a safe platform for testing and validating new swarm algorithms and coordination strategies prior to physical deployment, significantly reducing experimentation costs and risks. 
-By merging real-time physical insights with advanced predictive analytics, swarm digital twins enable more efficient, reliable, and adaptable swarm robotic systems, bridging the gap between theoretical models and practical applications.
+Swarm Digital Twins are virtual replicas of robotic swarms, capturing real-time behaviors and interactions. For instance, a swarm deployed for environmental monitoring can continuously sync sensor data and robot states with its digital counterpart. This enables operators to anticipate emergent behaviors, detect faults early, and optimize performance. Digital twins also offer a safe, low-risk environment for testing new coordination strategies before deployment, reducing costs and accelerating development. By combining real-time data with predictive analytics, they bridge the gap between theory and practice, enhancing the reliability and adaptability of swarm systems.
+
+
 % ----------------------------------------
 \section{Expected Results}
 As a form of result of the proposed project, it is expected to bring \textit{(i)} scientific contributions to CAS engineering, in particular in swarm robotics and collective behavior through AC,
@@ -217,10 +197,7 @@ The future vision for the project is to enable the building of complex, resilien
 
 The Figure~\ref{fig:timeline} shows the hypothetical three-year timeline for the project, subdivided into quarters.
 
-\paragraph{First year.} In the first year will be crucial a deep dive into the research of the state of the art in aggregate computing, FC operators and their properties, as they will lay the foundation of the basic composable building blocks for swarm behavior, such as flocking, pattern formation, consensus and leader election.
-Additionally, research in state of the art for LLM-based program synthesis will be foundational to propose an LLM macroprogramming agent, whose development is expected to follow the entire lifecycle of the project, since constructs and concepts will be introduced over time. 
-Extensive testing will be conducted firstly by simulating a reference scenario, with the final goal to implement it in the real-world.
-
+\paragraph{First year.} The first year will focus on an in-depth study of the state of the art in Aggregate Computing, Field Calculus (FC) operators, and their properties—key to defining composable building blocks for swarm behaviors like flocking, pattern formation, consensus, and leader election. Parallel research on LLM-based program synthesis will support the design of an LLM macroprogramming agent, whose development will span the entire project. Initial testing will rely on simulations of a reference scenario, with the ultimate goal of real-world deployment.
 \paragraph{Second year.} Within the second year, it is expected to shift focus from the basic building blocks of swarm behavior to the extended library, that will tackle some of the most relevant challenges expressed in Section~\ref{sec:challenges}.
 There will also be an increase in prototyping activities, which will first start in a simulated environment.
 
@@ -233,16 +210,15 @@ There will also be an increase in prototyping activities, which will first start
 The project will be assessed qualitatively by examining the expressiveness, usability, and resilience of the proposed framework in real-world and simulated deployments.  
 Key questions include:  
 (i) Expressiveness \& composability: possibility to describe a broad spectrum of swarm behaviours concisely. 
-(ii) Robustness \& adaptability in the field: how the swarm copes with adversarial events and whether it self-stabilises to the intended global behaviour.  
-(iii) ``Democratisation:'' Success is achieved if the same aggregate program can run unmodified on heterogeneous hardware classes that include low resource devices.
-(iv) Possibility to derive the desired collective behavior from natural language specifications.
+(ii) Robustness \& adaptability in the field: how the swarm copes with adversarial events and whether it self‑stabilises to the intended global behaviour.  
+(iii) Possibility to derive the desired collective behavior from natural language specifications.
 
 \paragraph{Quantitative.}
 Experiments need to be rigorously conducted and documented from the beginning of the simulated prototype phase until the end of the reference scenario implementation in the real world.
 Detailed quantitative metrics for success need to be expressed while documenting such experiments. 
 The metrics gathered will be compared with state-of-the-art swarm robotics frameworks to evaluate performance relative to optimal solutions.
 Particular attention will be needed in verifying the correctness of LLM-generated behaviors compared to manually created ones.
-As field-testing requires specialized hardware, efforts will be made to secure partnerships for international research stays during the PhD program, facilitating access to necessary equipment for project testing.
+This will be done via an LLM acting as a judge regarding the gold-standard, hand crafted solution.
 
 \paragraph{Scientific Contributions.}
 During the course of the program, it is expected to contribute to the scientific knowledge of CAS engineering and swarm robotics. 
