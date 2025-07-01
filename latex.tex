@@ -29,9 +29,9 @@
 % ----------------------------------------
 \section{State of the Art}
 \paragraph{\textbf{Collective Adaptive Systems and Macroprogramming}} Collective Adaptive Systems~\cite{ferscha2015collective} are large scale distributed systems composed of multiple autonomous, 
-interacting entities that operate in open-ended environments. While each entity within the CAS (i.e. sensor, robot, software agent) operates autonomously with its own local context and objective, their interactions
+interacting entities that operate in open-ended environments. While each entity within the CAS (i.e., sensor, robot, software agent) operates autonomously with its own local context and objective, their interactions
 produce \textbf{emergent global behaviors}. Decision-making in CAS is decentralized, and global functionality emerges from local interaction. Examples of CAS can be found in \textit{Smart Cities}, \textit{WSNs}, \textit{Digital Twins} and \textit{Swarm Robotics}.
-CAS are tipically heterogeneous and highly dynamic: entities can fail, join and leave at any time, introducing key challenges ranging from scalability and resource constraints to resilience and adaptability in
+CAS are typically heterogeneous and highly dynamic: entities can fail, join and leave at any time, introducing key challenges ranging from scalability and resource constraints to resilience and adaptability in
 unpredictable environments. Novel approaches to the engineering of CAS propose to shift the focus from the individual entity to the collective as a whole \textit{(macroprogramming~\cite{10.1145/3579353})}, to manage increasing complexity while
 improving maintainability. The main idea is to capture the macroscopic behavior of a collective system through a single program, abstracting away the complexities of individual components.
 
@@ -48,7 +48,7 @@ The field of swarm robotics has found several applications in various domains, s
 % Spiegare che aggregate assume solo la comunicazione con con neighbors e limitate sensing capabilities
 \paragraph{\textbf{Aggregate Computing and Field Calculus}} Aggregate Computing (AC)~\cite{beal2016aggregate} is a macroprogramming approach that aims to ease the engineering of CAS by shifting the
 focus from the individual device perspective to large aggregations of devices.
-In the AC context, a system  is modelled as a set of logical computing nodes (or "devices")
+In the AC context, a system  is modelled as a set of logical computing nodes (or ``devices'')
 where each node is equipped with sensors and actuators, and is connected with other nodes
 according to some neighbouring relationships. This abstract logical model does not prescribe
 particular technological solutions; instead, it uses minimal assumptions on the capabilities
@@ -56,40 +56,39 @@ of devices. The execution model is based on repeatedly executing computational r
 \textit{(i) sense} (gather local context and messages from neighbors), \textit{(ii) compute} (evaluate the aggregate program, producing an output) and 
 \textit{(iii) interact} (broadcast the evaluation result to neighbors).
 
-To reason about the properties of computation in AC, it is possible to use the framework of \textit{event structures}~\cite{nielsen1981petri} following the approach proposed by Audrito et. al.~\cite{audrito2018space},  by which a
-\textit{field} $\phi:E \rightarrow V$ is a function that maps each event in an event structure $\epsilon$ to a value, 
-which can be used to represent the evolution of a distributed property of the system—e.g.,
-the field of temperatures perceived by mobile/stationary sensors spreads in the environment,
-or the field of movement directions feeding movement actuators.
-In this context, an \textit{Aggregate Program P} applied to an event structure $\epsilon$ induces a \textit{field computation} $f:\phi_{in}\rightarrow\phi_{out}$ which is a function mapping an input field to an ouput field, formed by values at each event.
+The computational model of AC is built around the concept of \textit{fields}, which represent the spatial distribution of values across the devices in the system.
+Fields provide a way to abstract distributed computations by treating the entire network as a single computational entity where values are distributed spatially.
+%
+While fields offer an intuitive abstraction for distributed computation, reasoning about aggregate program properties requires formal foundations. AC leverages \textit{event structures}~\cite{nielsen1981petri} following Audrito et. al.~\cite{audrito2018space} to provide this mathematical framework.
+%
+A \textit{field} $\phi:E \rightarrow V$ maps each event in an event structure $\epsilon$ to a value, enabling precise reasoning about distributed properties (e.g., sensor temperature fields, actuator direction fields). When an \textit{Aggregate Program P} is applied to $\epsilon$, it induces a \textit{field computation} $f:\phi_{in}\rightarrow\phi_{out}$ that transforms input fields to output fields according to the program's logic.
 
-Based on the field abstraction, the Field Calculus (FC)~\cite{viroli2013calculus} provides a minimal language to express distributed, field-based computations consisting of stateful field evolution over time, neighbor interaction and splitting computation domains.
+Building on top of the field abstraction, the Field Calculus (FC)~\cite{viroli2013calculus} provides a minimal language to express distributed, field-based computations consisting of stateful field evolution over time, neighbor interaction and splitting computation domains.
 By combining AC's execution model and program specifications based functional composition of FC operators, it is possible to achieve
 adaptiveness and global emergent behavior. 
 Viroli et. al.~\cite{viroli2018engineering} demonstrated that, for \textit{fair} event structures, fields $\phi$ are said to \textit{converge}, meaning that for each device in an event structure, $\phi$ eventually assigns a value to it. 
 Moreover, some field computations were identified as \textit{self-stabilizing}, i.e., once topology and input data are fixed, computation eventually reaches a final
 stable configuration of output values, in spite of transient faults. Some of these high-level operators include:
-
 \begin{itemize}
-	\item \textit{Sparse Choice S:} yield a self-stabilising Boolean field which is true in a sparse set of devices located at a mean distance grain.
-	\item \textit{Gradient-cast G:} propagate a value from source devices outwards along the gradient of increasing distances from them, transforming the value through an
-accumulation function along the way.
-	\item \textit{Collect-cast C:} summarise distributed information into sink devices, the values provided by devices around the system, while aggregating information through an accumulation function along
-the gradient directed towards the sinks.
+	\item \textit{Sparse Choice (S):} yields a self-stabilizing Boolean field selecting sparse devices at distance grain apart.
+	\item \textit{Gradient-cast (G):} propagates values from sources along distance gradients, applying accumulation functions.
+	\item \textit{Collect-cast (C):} aggregates distributed information toward sinks via gradient-directed accumulation.
 \end{itemize}
+These operators are compositional: complex behaviors emerge by combining them (e.g., collecting data toward leaders is achieved through SG for leader election followed by C for data aggregation).
 
 AC is being actively researched in many areas, such as reinforcement learning~\cite{aguzzi2022towards}, IoT~\cite{beal2015aggregate} and digital twins~\cite{casadei2021digital}.
 
 \paragraph{\textbf{Aggregate Computing Incarnations}} Research on AC has led to the development of several incarnations, each of them tackling various research challenges of AC.
-\textit{Scafi}~\cite{casadei2016towards} is one of the most actively researched and maintained implementations of
-AC. It is hosted in the Scala language, a powerful and expressive JVM-based language. The main advantage of Scafi is its ability to provide a
+\textsc{ScaFi}~\cite{casadei2016towards} is one of the most actively researched and maintained implementations of
+AC. It is hosted in the Scala language, a powerful and expressive JVM-based language. The main advantage of ScaFi is its ability to provide a
 more high-level platform to support agile prototyping for research. \textit{Collektive} is a Kotlin-based implementation of AC that provides an extension of FC via the eXchange Calculus (XC) ~\cite{audrito2024exchange}.
-It provides an expressive DSL and it is natively multi-platform, enabling AC on a wider range of targets.
+It provides an expressive DSL, and it is natively multi-platform, enabling AC on a wider range of targets.
 \textit{FCCP}~\cite{audrito2024fcpp} is a C++ library that implements FC. It has been designed and developed to bring the AC paradigm to
 resource-constrained devices that cannot support the JVM. It does so by providing an extensible C++ library and a performance-oriented simulator that allows
 the developer to speed up the development process of aggregate programs. 
 
 \paragraph{LLM-aided code generation}
+\sloppypar
 Large Language Model (LLM)-based code generation refers to the use of deep learning models—specifically transformer-based neural networks trained on massive datasets of code and natural language—to automatically generate
 programming code from natural language descriptions or partial code snippets. These models, such as GPT-4~\footnote{\url{https://openai.com/index/gpt-4-research/}}, 
 Code Llama~\footnote{\url{https://ai.meta.com/blog/code-llama-large-language-model-coding/}}, StarCoder~\footnote{\url{https://huggingface.co/blog/starcoder}}, Gemini~\footnote{\url{https://gemini.google.com/app}}, 
@@ -103,8 +102,8 @@ of a high-level function library to allow ChatGPT to adapt to different robotics
 \subsection{Coherence with my previous academic experience}
 \label{sec:coherence}
 This proposed research projects extends and builds upon my previous academic experience, in particular in my last year of Master's degree.
-I have been introduced to AC and Scafi during the course of "Pervasive computing". Here, in the context of the final examination project for the course,
-I worked alongside three colleagues of mine to develop a Rust-based imlpementation of Aggregate Computing and a Scala 3 port of the Scafi DSL.
+I have been introduced to AC and ScaFi during the course of "Pervasive computing". Here, in the context of the final examination project for the course,
+I worked alongside three colleagues of mine to develop a Rust-based imlpementation of Aggregate Computing and a Scala 3 port of the ScaFi DSL.
 I then built upon this project to develop my Master's thesis where I proposed a Rust-based distributed framework to execute distributed AC programs in a network of
 heterogeneous devices, with the main goal of democratizing AC by offering a high-level API that can be supported in resource-constrained devices.
 
@@ -134,7 +133,7 @@ foundation upon which functional blocks for \textit{(i)} consensus, \textit{(ii)
 gradient-cast and collect-cast alongside other core FC operators. Moreover, the proposed AC platform will take into account the need for interoperability between devices with different 
 computational capabilities to ensure the possibility of real-world deployment.
 
-Finally, on top of the aforementioned system (API + AC Platform), the project will expose a language-based approach that leverages LLMs to generate swarm behavior code.
+Finally, on top of the aforementioned system (API + AC Platform), the project will expose a language-based approach that leverages LLMs to generate swarm behavior code. This approach aims to bridge the gap between high-level natural language specifications of desired swarm behaviors (e.g., ``form a circle around the target`` or ``distribute evenly across the search area'') and the low-level, executable aggregate computing code that implements these behaviors. By enabling non-experts to express swarm objectives in natural language and automatically translating them into resilient, self-stabilizing aggregate programs, this component addresses the long-standing challenge of the macro-local divide in swarm robotics---where global collective behaviors must be decomposed into local individual actions.
 %(dire esplicitamente il prodotto finale e le sue possibili applicazioni, eventualmente dicendo già quale sarà il suo test scenario reale)
 
 \begin{figure}
