@@ -11,7 +11,7 @@
 	\usepackage[colorlinks, filecolor=dark_blue, urlcolor=dark_blue, linkcolor=black, citecolor=black]{hyperref}
 \begin{document}
 
-\title{Towards democratization and resource awareness in dynamic swarm behaviors consigli sul titolo? sul capitolo 2}
+\title{Towards AI-powered Swarm Engineering}
 \author{Leonardo Micelli}
 \date{\today}
 \maketitle
@@ -20,7 +20,6 @@
 
 
 % ----------------------------------------
-\newpage
 \setcounter{tocdepth}{2}
 
 % set these after the TOC
@@ -90,6 +89,17 @@ It provides an expressive DSL and it is natively multi-platform, enabling AC on 
 resource-constrained devices that cannot support the JVM. It does so by providing an extensible C++ library and a performance-oriented simulator that allows
 the developer to speed up the development process of aggregate programs. 
 
+\paragraph{LLM-aided code generation}
+Large Language Model (LLM)-based code generation refers to the use of deep learning models—specifically transformer-based neural networks trained on massive datasets of code and natural language—to automatically generate
+programming code from natural language descriptions or partial code snippets. These models, such as GPT-4~\footnote{\url{https://openai.com/index/gpt-4-research/}}, 
+Code Llama~\footnote{\url{https://ai.meta.com/blog/code-llama-large-language-model-coding/}}, StarCoder~\footnote{\url{https://huggingface.co/blog/starcoder}}, Gemini~\footnote{\url{https://gemini.google.com/app}}, 
+and others, learn syntax, semantics, coding conventions, and best practices, enabling them to produce
+code in many programming languages.
+LLM-based code generation has become a topic of increasing interest in recent research~\cite{wang2023review}, as it can boost productivity and ease the development of complex systems, and already showed promise in several fields such as
+testing~\cite{hudson2024software}, vulnerability detection~\cite{zhou2025large} and multi-agent systems~\cite{he2025llm}.
+In the context of IoT, Vemprala et.al. proposed a strategy that combines design principles for prompt engineering and the creation
+of a high-level function library to allow ChatGPT to adapt to different robotics tasks, simulators, and form factors~\cite{vemprala2024chatgpt}.
+
 \subsection{Coherence with my previous academic experience}
 \label{sec:coherence}
 This proposed research projects extends and builds upon my previous academic experience, in particular in my last year of Master's degree.
@@ -111,10 +121,9 @@ In particular, there is a lack of a unified solution that can express, from a co
 resiliency, self-stabilization and guarantee of convergence, especially in low-resource and low-assumption contexts such as
 bearing-only formations~\cite{zhao2021bearing}, where data about orientation is gathered from simple sensors and used to form resilient swarm formations.
 
-Recent preliminary work in this direction has been conducted with MacroSwarm~\cite{aguzzi2023macroswarm}, a AC-powered ScaFi extension that exposes an API of collective
-behaviors built on top of AC's resilient operators. However, deeper research and further expansion is needed in areas such as dynamic team formation, resource management and adaptive workflow management and planning.
-Finally, Scafi's dependency on the JVM united with the variegated scenario regarding AC incarnations highlights the need of a \textit{lingua franca} that enables the definition and deployment
-of collective behaviors in heterogeneous and possibly resource-constrained systems.
+Despite its potential, the adoption of AC remains limited due to the complexity of writing and maintaining such programs. To overcome these barriers
+LLM-aided solutions can simplify the generation of aggregate (therefore swarm) programs by translating constraints expressed in natural language to aggregate specifications
+through the use of composable building blocks of swarm behavior, similarly to the strategy proposed by Vemprala et.al.~\cite{vemprala2024chatgpt}.
 
 \subsection{Idea}
 The idea of the project, exemplified in Figure~\ref{fig:research-project}, is to provide a top-down, unified approach to swarm behavior design, by offering a
@@ -124,6 +133,9 @@ foundation upon which functional blocks for \textit{(i)} consensus, \textit{(ii)
 \textit{(iv)} team organization and \textit{(v)} collective planning will be built. This can be done thanks to the possibility of leveraging FC's resilient operators of sparse choice, 
 gradient-cast and collect-cast alongside other core FC operators. Moreover, the proposed AC platform will take into account the need for interoperability between devices with different 
 computational capabilities to ensure the possibility of real-world deployment.
+
+Finally, on top of the aforementioned system (API + AC Platform), the project will expose a language-based approach that leverages LLMs to generate swarm behavior code.
+%(dire esplicitamente il prodotto finale e le sue possibili applicazioni, eventualmente dicendo già quale sarà il suo test scenario reale)
 
 \begin{figure}
 	\centering
@@ -158,6 +170,11 @@ Given a collective goal, the act of collective planning refers to devising a wor
 Researched approaches found in literature propose a role-based partition of tasks~\cite{sampedro2016flexible}, where robots are given fixed roles within the context of a specific mission, highlighting the lack
 of decentralized approaches that let task partitioning and goal pursuing emerge from local interactions.
 
+\subsubsection{Language-based aggregate code generation}
+LLM-based code generation already showed promise in various areas of software engineering~\cite{hudson2024software,zhou2025large,he2025llm}. However, if we consider the domain of CAS and swarm robotics in particular, 
+a gap in proposed methods for language-based program synthesis still remain. Recent research~\cite{vemprala2024chatgpt} showed the potential of combining LLMs, prompt engineering and, notably, libraries of robot functionalities 
+to enact a language-based robot development process. This highlights the potential for developing similar solutions in AC contexts, as the paradigm is by design comprised of simple, functional and composable building blocks that could
+be combined by LLM agents to generate aggregate specifications based on constraints gathered with natural language processing.
 
 \subsection{Reference Scenarios}
 \label{sec:scenarios}
@@ -181,11 +198,12 @@ By merging real-time physical insights with advanced predictive analytics, swarm
 % ----------------------------------------
 \section{Expected Results}
 As a form of result of the proposed project, it is expected to bring \textit{(i)} scientific contributions to CAS engineering, in particular in swarm robotics and collective behavior through AC,
-\textit{(iii)} to realize an actionable top-down design framework based on AC to address the open challenges in Section~\ref{sec:challenges}, 
-\textit{(iii)} validations based on reference scenarios conducted within state of art simulators such as Argos~\footnote{\url{https://www.argos-sim.info/}} and Alchemist~\footnote{\url{https://github.com/AlchemistSimulator/Alchemist}} as well
+\textit{(ii)} to realize a unified composable API founded on AC to address the open challenges in Section~\ref{sec:challenges}, 
+\textit{(iii)} to design a macroprogramming LLM agent capable of translating global specifications into executable local behavior,
+\textit{(iv)} validations based on reference scenarios conducted within state of art simulators such as Argos~\footnote{\url{https://www.argos-sim.info/}} and Alchemist~\footnote{\url{https://github.com/AlchemistSimulator/Alchemist}} as well
 as in the real-world.
 
-The future vision for the project is to enable the building of complex, resilient and dynamic swarm behaviors and deploy them in real-world scenarios, some of which could be \textit{(i)} precision agriculture,
+The future vision for the project is to enable the building of complex, resilient and dynamic swarm behaviors through natural languge processing and deploy them in real-world scenarios, some of which could be \textit{(i)} precision agriculture,
 \textit{(ii)} environmental monitoring, \textit{(iii)} logistics and warehousing, \textit{(iv)} disaster response and search, 
 \textit{(v)} ubiquitous computing with Swarm Digital Twins.
 
@@ -199,10 +217,9 @@ The future vision for the project is to enable the building of complex, resilien
 
 The Figure~\ref{fig:timeline} shows the hypothetical three-year timeline for the project, subdivided into quarters.
 
-\paragraph{First year.} In the first year will be crucial a deep dive into the research of the state of the art in aggregate computing platforms to devise the design of the Aggregate Computing Platform.
-In parallel, deep research of current FC operators and their properties will lay the foundation of the basic composable building blocks for swarm behavior, such as flocking, pattern formation, consensus and leader election.
-Due to the overlap of these two tasks, it is expected for the latter to carry over the first half of the second year, to allow enough time for the AC platform to be completed by the end of the first year.
-Extensive testing will be conducted firstly by simulating a reference scenario, with the final goal to implement it in the real-world
+\paragraph{First year.} In the first year will be crucial a deep dive into the research of the state of the art in aggregate computing, FC operators and their properties, as they will lay the foundation of the basic composable building blocks for swarm behavior, such as flocking, pattern formation, consensus and leader election.
+Additionally, research in state of the art for LLM-based program synthesis will be foundational to propose an LLM macroprogramming agent, whose development is expected to follow the entire lifecycle of the project, since constructs and concepts will be introduced over time. 
+Extensive testing will be conducted firstly by simulating a reference scenario, with the final goal to implement it in the real-world.
 
 \paragraph{Second year.} Within the second year, it is expected to shift focus from the basic building blocks of swarm behavior to the extended library, that will tackle some of the most relevant challenges expressed in Section~\ref{sec:challenges}.
 There will also be an increase in prototyping activities, which will first start in a simulated environment.
@@ -218,12 +235,13 @@ Key questions include:
 (i) Expressiveness \& composability: possibility to describe a broad spectrum of swarm behaviours concisely. 
 (ii) Robustness \& adaptability in the field: how the swarm copes with adversarial events and whether it self‑stabilises to the intended global behaviour.  
 (iii) “Democratisation:” Success is achieved if the same aggregate program can run unmodified on heterogeneous hardware classes that include low resource devices.
-
+(iv) Possibility to derive the desired collective behavior from natural language specifications.
 
 \paragraph{Quantitative.}
 Experiments need to be rigorously conducted and documented from the beginning of the simulated prototype phase until the end of the reference scenario implementation in the real world.
 Detailed quantitative metrics for success need to be expressed while documenting such experiments. 
 The metrics gathered will be compared with state-of-the-art swarm robotics frameworks to evaluate performance relative to optimal solutions.
+Particular attention will be needed in verifying the correctness of LLM-generated behaviors compared to manually created ones.
 As field-testing requires specialized hardware, efforts will be made to secure partnerships for international research stays during the PhD program, facilitating access to necessary equipment for project testing.
 
 \paragraph{Scientific Contributions.}
